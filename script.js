@@ -7,8 +7,12 @@ var places = []
 var comp = false
 var players = []
 var WinUpdateUi
-var switchCurrent = (current) => { current = current == 0 ? 1 : 0; return current }
+var switchCurrent = (current) => { current = current == 0 ? 1 : 0; updateStatus(current);return current }
 var makeTiles
+
+function updateStatus(current){
+  GameElements.status.innerText=players[current].name+`'s turn`
+}
 
 var didWin = (current, WinUpdateUi) => {
   var places = players[current].places
@@ -93,8 +97,6 @@ function startGame() {
     makeTiles()
   }
 
-  var current = 0
-
   GameElements.root = document.createElement('div')
   GameElements.root.setAttribute('id', 'game_root')
   document.body.appendChild(GameElements.root)
@@ -116,6 +118,23 @@ function startGame() {
   GameElements.gameboard = document.createElement('div')
   GameElements.gameboard.setAttribute('id', 'game_board')
   outers.gameboard.appendChild(GameElements.gameboard)
+  
+  GameElements.oscore = document.createElement('div')
+  GameElements.oscore.className = "score-o"
+  GameElements.oscore.innerText = 'O:0'
+  GameElements.scoreboard.appendChild(GameElements.oscore)
+  
+  GameElements.xscore = document.createElement('div')
+  GameElements.xscore.className = "score-x"
+  GameElements.xscore.innerText = 'X:0'
+  GameElements.scoreboard.appendChild(GameElements.xscore)
+  
+  GameElements.status = document.createElement('div')
+  GameElements.status.className = 'status status-inner'
+  GameElements.root.appendChild(GameElements.status)
+  
+  var current = 0
+  updateStatus(current)
 
   GameElements.tiles = []
   makeTiles = function() {
@@ -151,6 +170,7 @@ function startGame() {
         if (places.map(p => p.used).find(e => !e) == undefined) {
           Pop(`It's a Tie`)
           current=0
+          updateStatus(current)
           makeTiles()
         }
 
@@ -161,21 +181,6 @@ function startGame() {
   }
 
   makeTiles()
-
-  GameElements.oscore = document.createElement('div')
-  GameElements.oscore.className = "score-o"
-  GameElements.oscore.innerText = 'O:0'
-  GameElements.scoreboard.appendChild(GameElements.oscore)
-
-  GameElements.xscore = document.createElement('div')
-  GameElements.xscore.className = "score-x"
-  GameElements.xscore.innerText = 'X:0'
-  GameElements.scoreboard.appendChild(GameElements.xscore)
-  
-  GameElements.status=document.createElement('div')
-  GameElements.status.className='status status-inner x'
-  GameElements.status.innerText=`X's turn`
-  GameElements.root.appendChild(GameElements.status)
 
 
   if (comp && players[current].name != op) {
