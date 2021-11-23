@@ -1,0 +1,88 @@
+:root{
+  --dark: #212121
+}
+
+body{
+  font-family:sans-serif;
+}
+
+#home_root{
+  position:fixed;
+  height:0%;
+  width:100%;
+  overflow: hidden;
+  animation-name: homemove;
+  animation-duration: 0.5s;
+  height:100%;
+  background-color: #212121;
+  top:0;
+  left:0;
+  color: white;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+#game_root {
+  position: fixed;
+  height: 100%;
+  width: 0%;
+  overflow: hidden;
+  animation-name: toright;
+  animation-duration: 0.5s;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  padding: 10px;
+  overflow: scroll;
+  background-color: #ff7366;
+}
+
+
+
+.t-center{
+  text-align: center;
+}
+
+.flex-j-center{
+  display: flex;
+  justify-content: center;
+}
+
+.flex-a-center {
+  display: flex;
+  align-items: center;
+}
+
+button{
+  border: 1px solid grey;
+  background-color: #fefefe;
+  min-width:5rem;
+  min-height: 2rem
+}
+
+.f50{
+  flex:50%;
+}
+
+.pabs{
+  position: absolute;
+}
+
+.btn{
+  background-color: #fefefe;
+  color:var(--dark);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.tab{
+  overflow:none;
+  animation-name:toright;
+  animation-duration:0.5s;
+}
+
+.hide{
+  display:none;
+}

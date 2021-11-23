@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X and O</title>
+  <link rel="stylesheet" href="./styles/animation.css" title="" type="" />
+  <link rel="stylesheet" href="./styles/index.css" title="" type="" />
+  <link rel="stylesheet" href="./styles/components.css" title="" type="" />
+</head>
+
+<body>
+  <div id="home_root">
+    <div class="flex-j-center flex-a-center" style="width:100%;height:100%">
+      <div class="flex-j-center flex-a-center">
+        <div class="card" style="height:25rem">
+          <h1 class="t-center">TicTacToe</h1>
+          <p class="t-center">Choose one</p>
+          <br />
+          <div class="flex-j-center tab" data-tab="first">
+            <div>
+              <div class="flex-j-center">
+                <button class="btn" onclick="startGame()">
+                  <img src="./icons/User.png" alt="" />
+                  Player vs Player</button>
+              </div>
+              <br /><br />
+              <div class="flex-j-center">
+                <button class="btn" onclick="changeTab('options')">
+                   <img src="./icons/Computer.png" alt="" />
+                  Player vs Computer</button>
+              </div>
+            </div>
+          </div>
+          <div class="tab hide" data-tab="options">
+            <div class="option-grid flex-j-center">
+              <button class="option option-x">X</button>
+              <button class="option option-o">O</button>
+            </div>
+            <p onclick="changeTab('first')" class="t-center" style="color:var(--ocolor)">Back</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
