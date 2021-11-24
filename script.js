@@ -1,5 +1,4 @@
 var home = document.getElementById('home_root')
-var homeHtml = home.innerHTML
 var options = home.querySelectorAll('.option')
 var op
 var GameElements = {}
@@ -149,6 +148,22 @@ function startGame() {
   GameElements.oscore.className = "score-o"
   GameElements.oscore.innerText = 'O:0'
   GameElements.scoreboard.appendChild(GameElements.oscore)
+  
+  GameElements.back = document.createElement('button')
+  GameElements.back.style.flex = '5'
+  GameElements.back.className = 'btn flex-j-center flex-a-center'
+  GameElements.back.style.backgroundColor = 'var(--dark)'
+  GameElements.back.style.border = 'none'
+  GameElements.back.innerText = '<- Back'
+  GameElements.back.style.color = 'white'
+  GameElements.back.addEventListener('click', () => {
+    GameElements.root.remove()
+    home.classList.remove('hide')
+    GameElements = {}
+    places = []
+  })
+  
+  GameElements.scoreboard.appendChild(GameElements.back)
 
   GameElements.timer = document.createElement('div')
   GameElements.timer.style.flex = '25'
@@ -251,6 +266,6 @@ function changeTab(name) {
   tab.classList.remove('hide')
 }
 
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js').then((e)=>console.log(e))
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then((e) => console.log(e))
 }

@@ -1,16 +1,16 @@
 
-  `GameElements.back = document.createElement('button')
-  GameElements.back.style.flex = '5'
-  GameElements.back.className = 'btn flex-j-center flex-a-center'
-  GameElements.back.style.backgroundColor = 'var(--dark)'
-  GameElements.back.style.border = 'none'
-  GameElements.back.innerText = '<- Back'
-  GameElements.back.style.color = 'white'
-  GameElements.back.addEventListener('click', () => {
-    GameElements.root.remove()
-    home.classList.remove('hide')
-    GameElements = {}
-    places = []
-  })
-
-  GameElements.scoreboard.appendChild(GameElements.back) `
+  GameElements.back = document.createElement('button')
+    GameElements.back.style.flex = '5'
+    GameElements.back.className = 'btn flex-j-center flex-a-center'
+    GameElements.back.style.backgroundColor = 'var(--dark)'
+    GameElements.back.style.border = 'none'
+    GameElements.back.innerText = '<- Back'
+    GameElements.back.style.color = 'white'
+    GameElements.back.addEventListener('click', () => {
+      GameElements.root.remove()
+      home.classList.remove('hide')
+      GameElements = {}
+      places = []
+    })
+    
+    GameElements.scoreboard.appendChild(GameElements.back)
