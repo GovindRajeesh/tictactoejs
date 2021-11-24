@@ -19,7 +19,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     await cache.addAll([
-      '/index.html','/script.js','/styles/','/styles/components.css','/styles/index.css','/styles/animation.css','/icons/','/icons/Computer.png','/icons/User.png']);
+      '/index.html','/script.js','/styles/components.css','/styles/index.css','/styles/animation.css','/icons/Computer.png','/icons/User.png']);
   })());
 });
 
