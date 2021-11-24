@@ -1,8 +1,8 @@
 {
-    "theme_color": "#292726",
+    "theme_color": "#fffff",
     "background_color": "#fffff",
     "display": "standalone",
-    "start_url": "/index.html",
+    "start_url": "/",
     "short_name": "TicTacToe",
     "description": "TicTacToe",
     "name": "TicTacToe",
