@@ -1,4 +1,5 @@
 var home = document.getElementById('home_root')
+var homeHtml = home.innerHTML
 var options = home.querySelectorAll('.option')
 var op
 var GameElements = {}
@@ -7,11 +8,36 @@ var places = []
 var comp = false
 var players = []
 var WinUpdateUi
-var switchCurrent = (current) => { current = current == 0 ? 1 : 0; updateStatus(current);return current }
+var switchCurrent = (current) => {
+  current = current == 0 ? 1 : 0;
+  updateStatus(current);
+  return current
+}
 var makeTiles
 
-function updateStatus(current){
-  GameElements.status.innerText=players[current].name+`'s turn`
+function Timer(el) {
+  var timer = {
+    minutes: 0,
+    seconds: 0
+  }
+  setInterval(() => {
+    el.innerText = `${timer.minutes.toString().length==1?'0'+timer.minutes:timer.minutes}:${timer.seconds.toString().length==1?'0'+timer.seconds:timer.seconds}`
+    timer.seconds += 1
+    if (timer.seconds >= 60) {
+      timer.minutes += 1
+      timer.seconds = 0
+    }
+  }, 1000)
+}
+
+function updateStatus(current) {
+  if (GameElements.status != null) {
+    GameElements.status.remove()
+  }
+  GameElements.status = document.createElement('div')
+  GameElements.status.innerText = players[current].name + `'s turn`
+  GameElements.status.className = `status-inner ${players[current].name.toLowerCase()}`
+  outers.status.appendChild(GameElements.status)
 }
 
 var didWin = (current, WinUpdateUi) => {
@@ -58,26 +84,26 @@ function doComp(current, switchCurrent) {
   return current
 }
 
-function Pop(s){
+function Pop(s) {
   outers.popout = document.createElement('div')
-    outers.popout.className = 'pop-outer'
-    GameElements.root.appendChild(outers.popout)
+  outers.popout.className = 'pop-outer'
+  GameElements.root.appendChild(outers.popout)
 
-    outers.popin = document.createElement('div')
-    outers.popin.className = 'pop-inner'
-    outers.popout.appendChild(outers.popin)
+  outers.popin = document.createElement('div')
+  outers.popin.className = 'pop-inner'
+  outers.popout.appendChild(outers.popin)
 
-    outers.popin.innerText = s
-    
-    setTimeout(() => {
-      outers.popin.style.animationName = 'dewidth'
-      outers.popin.style.animationDuration = '1.5s'
-      outers.popin.style.fontSize = '0px'
-      outers.popin.style.width = '0%'
-    }, 1500)
-    
-    setTimeout(() => outers.popout.remove(), 2500)
-    
+  outers.popin.innerText = s
+
+  setTimeout(() => {
+    outers.popin.style.animationName = 'dewidth'
+    outers.popin.style.animationDuration = '1.5s'
+    outers.popin.style.fontSize = '0px'
+    outers.popin.style.width = '0%'
+  }, 1500)
+
+  setTimeout(() => outers.popout.remove(), 2500)
+
 
 }
 
@@ -90,7 +116,7 @@ function startGame() {
   WinUpdateUi = (current) => {
     var player = players[current]
 
-    Pop(player.name+' scored')
+    Pop(player.name + ' scored')
 
     GameElements[player.name.toLowerCase() + 'score'].innerText = player.name + ':' + player.score
 
@@ -101,11 +127,11 @@ function startGame() {
   GameElements.root.setAttribute('id', 'game_root')
   document.body.appendChild(GameElements.root)
 
-  setTimeout(() => document.querySelector('#home_root').remove(), 2000)
+  setTimeout(() => document.querySelector('#home_root').classList.add('hide'), 2000)
 
   var outscoreboard = document.createElement('div')
-  outscoreboard.className ='mar-score'
-    GameElements.root.appendChild(outscoreboard)
+  outscoreboard.className = 'mar-score'
+  GameElements.root.appendChild(outscoreboard)
 
   GameElements.scoreboard = document.createElement('div')
   GameElements.scoreboard.className = 'scores'
@@ -118,21 +144,35 @@ function startGame() {
   GameElements.gameboard = document.createElement('div')
   GameElements.gameboard.setAttribute('id', 'game_board')
   outers.gameboard.appendChild(GameElements.gameboard)
-  
+
   GameElements.oscore = document.createElement('div')
   GameElements.oscore.className = "score-o"
   GameElements.oscore.innerText = 'O:0'
   GameElements.scoreboard.appendChild(GameElements.oscore)
-  
+
+  GameElements.timer = document.createElement('div')
+  GameElements.timer.style.flex = '25'
+  GameElements.timer.style.fontSize = 'xx-large'
+  GameElements.timer.style.display = 'flex'
+  GameElements.timer.style.alignItems = 'center'
+  GameElements.timer.style.justifyContent = 'center'
+
+  Timer(GameElements.timer)
+
+
+  GameElements.timer.style.textAlign = 'center'
+  GameElements.timer.innerText = '00:00'
+  GameElements.scoreboard.appendChild(GameElements.timer)
+
   GameElements.xscore = document.createElement('div')
   GameElements.xscore.className = "score-x"
   GameElements.xscore.innerText = 'X:0'
   GameElements.scoreboard.appendChild(GameElements.xscore)
-  
-  GameElements.status = document.createElement('div')
-  GameElements.status.className = 'status status-inner'
-  GameElements.root.appendChild(GameElements.status)
-  
+
+  outers.status = document.createElement('div')
+  outers.status.className = 'status'
+  GameElements.root.appendChild(outers.status)
+
   var current = 0
   updateStatus(current)
 
@@ -169,7 +209,7 @@ function startGame() {
 
         if (places.map(p => p.used).find(e => !e) == undefined) {
           Pop(`It's a Tie`)
-          current=0
+          current = 0
           updateStatus(current)
           makeTiles()
         }
@@ -182,9 +222,9 @@ function startGame() {
 
   makeTiles()
 
-
   if (comp && players[current].name != op) {
     doComp(current, switchCurrent)
+
     current = 1
   }
 }
@@ -209,4 +249,8 @@ function changeTab(name) {
   })
   var tab = document.querySelector(`[data-tab='${name}']`)
   tab.classList.remove('hide')
+}
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js').then((e)=>console.log(e))
 }
