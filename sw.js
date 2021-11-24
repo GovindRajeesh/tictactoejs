@@ -11,9 +11,8 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
  limitations under the License.
 */
 
-// Incrementing OFFLINE_VERSION will kick off the install event and force
-// previously cached resources to be updated from the network.
-const OFFLINE_VERSION = 1;
+
+// previously cached resources to be updated from the 
 const CACHE_NAME = 'offline';
 
 self.addEventListener('install', (event) => {
