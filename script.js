@@ -139,6 +139,8 @@ function startGame() {
   outscoreboard.appendChild(GameElements.scoreboard)
 
   outers.gameboard = document.createElement('div')
+outers.gameboard.style.position='absolute'
+outers.left='0'
   outers.gameboard.className = 'flex-j-center'
   GameElements.root.appendChild(outers.gameboard)
 
