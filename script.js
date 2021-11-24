@@ -252,5 +252,5 @@ function changeTab(name) {
 }
 
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').then((e)=>console.log(e))
+  navigator.serviceWorker.register('/sw.js').then((e)=>console.log(e))
 }
