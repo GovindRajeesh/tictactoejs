@@ -140,7 +140,7 @@
     margin-bottom: 20%;
   }
 
-#game_board{grid-template-columns:5.5rem 5.5rem 5.5rem}
+#game_board{grid-template-columns:6.5rem 6.5rem 6.5rem}
 
   .status {
     bottom: 0;
