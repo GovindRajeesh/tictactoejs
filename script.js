@@ -273,6 +273,7 @@ window.addEventListener('popstate',(e)=>{
       GameElements.root.remove()
     }
     home.classList.remove('hide')
+    window.location.reload()
   
 })
 
