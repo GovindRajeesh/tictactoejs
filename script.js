@@ -269,11 +269,12 @@ function changeTab(name) {
 }
 
 window.addEventListener('popstate',(e)=>{
+  e.preventDefault()
     home.classList.remove('hide')
     if ('root' in GameElements) {
       GameElements.root.remove()
       GameElements={}
-      players={}
+      players=[]
     }
 })
 
