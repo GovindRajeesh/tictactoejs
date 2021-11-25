@@ -268,6 +268,15 @@ function changeTab(name) {
   tab.classList.remove('hide')
 }
 
+window.addEventListener('popstate',(e)=>{
+  if(!e.state.game){
+    if('root' in GameElements){
+      GameElements.root.remove()
+    }
+    home.classList.remove('hide')
+  }
+})
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
     .then((e) => console.log(e));
