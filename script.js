@@ -272,6 +272,8 @@ window.addEventListener('popstate',(e)=>{
     home.classList.remove('hide')
     if ('root' in GameElements) {
       GameElements.root.remove()
+      GameElements={}
+      players={}
     }
 })
 
