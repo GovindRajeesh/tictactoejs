@@ -269,12 +269,11 @@ function changeTab(name) {
 }
 
 window.addEventListener('popstate',(e)=>{
-  if(!e.state.game){
     if('root' in GameElements){
       GameElements.root.remove()
     }
     home.classList.remove('hide')
-  }
+  
 })
 
 if ('serviceWorker' in navigator) {
