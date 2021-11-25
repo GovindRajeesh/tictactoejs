@@ -108,7 +108,7 @@ function Pop(s) {
 }
 
 function startGame() {
-  window.history.pushState(null,null,'/')
+  window.history.pushState({game:true}, 'Game', '#game')
   players = [
     { name: 'X', score: 0, places: [] },
     { name: 'O', score: 0, places: [] },
@@ -139,9 +139,9 @@ function startGame() {
   outscoreboard.appendChild(GameElements.scoreboard)
 
   outers.gameboard = document.createElement('div')
-outers.gameboard.style.position='absolute'
-outers.gameboard.style.left='0'
-outers.gameboard.style.width='100%'
+  outers.gameboard.style.position = 'absolute'
+  outers.gameboard.style.left = '0'
+  outers.gameboard.style.width = '100%'
   outers.gameboard.className = 'flex-j-center'
   GameElements.root.appendChild(outers.gameboard)
 
@@ -153,19 +153,19 @@ outers.gameboard.style.width='100%'
   GameElements.oscore.className = "score-o"
   GameElements.oscore.innerText = 'O:0'
   GameElements.scoreboard.appendChild(GameElements.oscore)
-  
+
   GameElements.back = document.createElement('button')
-    GameElements.back.style.flex = '5'
-    GameElements.back.className = 'btn flex-j-center flex-a-center'
-    GameElements.back.style.backgroundColor = 'var(--dark)'
-    GameElements.back.style.border = 'none'
-    GameElements.back.innerText = 'Home'
-    GameElements.back.style.color = 'white'
-    GameElements.back.addEventListener('click', () => {
-      window.location.reload()
-    })
-    
-    GameElements.scoreboard.appendChild(GameElements.back)
+  GameElements.back.style.flex = '5'
+  GameElements.back.className = 'btn flex-j-center flex-a-center'
+  GameElements.back.style.backgroundColor = 'var(--dark)'
+  GameElements.back.style.border = 'none'
+  GameElements.back.innerText = 'Home'
+  GameElements.back.style.color = 'white'
+  GameElements.back.addEventListener('click', () => {
+    window.location.reload()
+  })
+
+  GameElements.scoreboard.appendChild(GameElements.back)
 
   GameElements.timer = document.createElement('div')
   GameElements.timer.style.flex = '25'
@@ -268,7 +268,7 @@ function changeTab(name) {
   tab.classList.remove('hide')
 }
 
-if('serviceWorker' in navigator){
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
-  .then((e)=>console.log(e));
+    .then((e) => console.log(e));
 }
