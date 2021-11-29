@@ -108,7 +108,7 @@ function Pop(s) {
 }
 
 function startGame() {
-  window.history.pushState({game:true}, 'Game', '#game')
+  window.history.pushState({game:true}, 'Game', '')
   //
   players = [
     { name: 'X', score: 0, places: [] },
