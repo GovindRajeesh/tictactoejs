@@ -162,7 +162,7 @@ function startGame() {
   GameElements.back.innerText = 'Home'
   GameElements.back.style.color = 'white'
   GameElements.back.addEventListener('click', () => {
-    window.location.reload()
+    window.history.back()
   })
 
   GameElements.scoreboard.appendChild(GameElements.back)
