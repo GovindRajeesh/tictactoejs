@@ -109,7 +109,7 @@ function Pop(s) {
 
 function startGame() {
   window.history.pushState({game:true}, 'Game', '#game')
-  document.body=window.history.state.prevUrl
+  document.body.innerHTML=window.history.state.prevUrl
   players = [
     { name: 'X', score: 0, places: [] },
     { name: 'O', score: 0, places: [] },
