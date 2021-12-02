@@ -54,8 +54,7 @@
 // Reload handle for pwa
 var reloadm=window.location.reload
 window.location.reload=()=>{
-var stategame=window.history.state.game
-if(stategame!=undefined && stategame!=null && stategame){
+if('game' in window.history.state && window.history.state.game){
 window.history.back()
 }else{
 reloadm()
