@@ -279,13 +279,3 @@ if ('serviceWorker' in navigator) {
     .then((e) => console.log(e));
 }
 
-// Reload handle for pwa
-var reloadm=window.location.reload
-window.location.reload=()=>{
-var stategame=window.history.state.game
-if(stategame!=undefined && stategame!=null && stategame){
-window.history.back()
-}else{
-reloadm()
-}
-}
