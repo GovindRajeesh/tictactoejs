@@ -50,6 +50,18 @@
       </div>
     </div>
   <script src="/script.js" type="text/javascript" charset="utf-8"></script>
+<script>
+// Reload handle for pwa
+var reloadm=window.location.reload
+window.location.reload=()=>{
+var stategame=window.history.state.game
+if(stategame!=undefined && stategame!=null && stategame){
+window.history.back()
+}else{
+reloadm()
+}
+}
+</script>
 </body>
 
 </html>
